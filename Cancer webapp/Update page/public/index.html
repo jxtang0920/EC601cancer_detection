@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+    <meta name="author" content="">
+    <script scr="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
+    <script> 
+    window.jQuery || document.write('<script src="http://kiwenlau.com/js/jquery.min.js"><\/script>'))
+    </script>
+    <link rel="icon" href="../../favicon.ico">
+
+    <!--title>Cancer Detection</title-->
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://v3.bootcss.com/examples/grid/grid.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <link rel="stylesheet" type="text/css" href="dialog-polyfill.css" />
+  
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js">
+</script>
+
+
+<style type="text/css">
+@import url(style.css);
+
+</style>
+
+</head>
+
+<body>
+  <script src="myscript.js"></script>
+ 
+
+
+
+  <!-------login-------------->
+
+
+
+<!--main page content-->
+
+<!------------------------layout---------------->
+ <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Cancer Detection</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <!--button type="button" class="btn-primary" onclick="signIn();">
+          Sign-in with google</button>
+        <!--<a type="button" class="g-signin2" data-onsucess="onSignIn">Sign-in</a>-->
+       
+      
+</div>
+
+
+
+
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Menu</span>
+    <nav class="mdl-navigation">
+    <button id="wel" class="mdl-button mdl-js-button"> Welcome </button>
+      <button id="news" class="mdl-button mdl-js-button"> News </button>
+      <button id="contact" class="mdl-button mdl-js-button"> Contact Us</button>
+      <button id="result" class="mdl-button mdl-js-button"> Result</button>
+     
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    
+  <div id="upcontent" class="mdl-dialog__content">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="genes">
+      <label class="mdl-textfield__label" for="sample3">Genes...</label>
+    </div>
+
+    <br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="id">
+      <label class="mdl-textfield__label" for="sample3">ID...</label>
+    </div>
+    </br>
+    <br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="vari">
+      <label class="mdl-textfield__label" for="sample3">Variation...</label>
+    </div>
+    </br>
+    <br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="text">
+      <label class="mdl-textfield__label" for="sample3">Text...</label>
+    </div>
+    </br>
+    <br>
+    <button id="submitBtn" type="button" class="btn-primary" >
+          submit</button>
+    </br>
+
+    </div>
+  </main>
+</div>
+
+<!-- 
+   <p style="font-family:verdana"> This website desgin <br>for cancer detection.</br></p>
+  <a href="https://shib.bu.edu/idp/profile/SAML2/Redirect/SSO;jsessionid=sq42w76jpqqk1dpngt3s65wzx?execution=e1s1" target="_blank"><strong style="font-family:verdana">This is a link</strong></a>
+  <p>
+  <a href="#4"><strong style="font-family:verdana"> contact </strong> </a></p>
+  <p>
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507832211773&di=7c0214e89468a4fe5e6eb3e5d6765cd8&imgtype=0&src=http%3A%2F%2Fi2.hunantv.com%2Fp1%2F20160422%2F1040219090.jpg" 
+  alt="Love this picture" width="300" high="200"/></p>
+  <p>
+    <a name="4">Contact Us</a></p>
+    <p> 
+    <a href="mailto:someone@microsoft.com?subject=Hello%20again">Sent Email </a></p>
+-->
+
+
+
+<!--SCRIPT---------------------------------------------------------------->
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBfDGxW4qoVfS7ESHZ6bBJ9J9YvxxLD0ZU",
+    authDomain: "cancer-update.firebaseapp.com",
+    databaseURL: "https://cancer-update.firebaseio.com",
+    projectId: "cancer-update",
+    storageBucket: "cancer-update.appspot.com",
+    messagingSenderId: "591186603156"
+  };
+  firebase.initializeApp(config);
+  //var admin = require("firebase-admin");
+   //admin.initializeApp(functions.config().firebase);
+   var database = firebase.database();
+
+
+   var rootRef = firebase.database().ref().child('infos');
+   $('#submitBtn').click(function(){
+    rootRef.set({
+      gene:$('gene').val(),
+      id:$('id').val()
+    });
+   });
+
+</script>
+  
+
+<script scr="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="index.js"></script>
+
+
+
+</body>
+
+
+  
+
+</html>
