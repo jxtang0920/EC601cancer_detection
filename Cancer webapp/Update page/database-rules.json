@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "messages": {
+      ".read": "auth !== true",
+      ".write": "auth !== true"
+    }
+    
+}
+}
