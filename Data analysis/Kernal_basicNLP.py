@@ -90,9 +90,28 @@ truncated_bag_of_words = svd.fit_transform(bag_of_words)
 evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel())
 evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel(), 
                   RandomForestClassifier(n_estimators=1000, max_depth=5, verbose=1))
-evaluate_features(tfidf, df_train['Class'].values.ravel(), 
+evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel(), 
                   SVC(kernel='linear', probability=True))
 '''
+
+"""tfidf"""
+count_vectorizer = TfidfVectorizer(
+    analyzer="word", tokenizer=nltk.word_tokenize,
+    preprocessor=None, stop_words='english', max_features=None)    
+
+tfidf = count_vectorizer.fit_transform(df_train['Text'])
+
+"""TruncatedSVD"""
+svd = TruncatedSVD(n_components=25, n_iter=25, random_state=12)
+truncated_tfidf = svd.fit_transform(tfidf)
+
+"""tfidf testcases
+evaluate_features(truncated_tfidf, df_train['Class'].values.ravel())
+evaluate_features(truncated_tfidf, df_train['Class'].values.ravel(), 
+                  RandomForestClassifier(n_estimators=1000, max_depth=5, verbose=1))
+evaluate_features(truncated_tfidf, df_train['Class'].values.ravel(), 
+                  SVC(kernel='linear', probability=True))
+"""
 
 """get word2vec"""
 class MySentences(object):
