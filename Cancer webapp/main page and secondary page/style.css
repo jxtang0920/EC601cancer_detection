@@ -1,0 +1,69 @@
+
+
+.demo-layout-transparent {
+  background: url(https://image.freepik.com/free-photo/city-view-from-seaport_1112-618.jpg) center / cover;
+  p {text-indent: 5em;}
+    h4 {font-family:Georgia; color:red;}
+
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: black;
+}
+
+
+.intro{
+
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height:100vh;
+
+	
+	padding-top: 5em;
+	padding-left:5em;
+	padding-right:5em;
+    font-family:Arial;
+    color:black;
+    text-align:center;
+    word-spacing: 20px;
+    font-weight:bold;
+    letter-spacing: 2px;
+    font-size:1cm;
+
+}
+
+
+.login-cover {
+	background:#fff;
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height:100vh;
+	z-index:800;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	
+}
+
+
+
+#loginProgress{
+   display: none;
+}
+
+
+#loginError{
+		display: none;
+}
+
+#important{
+
+	color:red;
+
+}

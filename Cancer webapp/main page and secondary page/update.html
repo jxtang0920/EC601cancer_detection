@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload file</title>    
+  
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+       <meta name="description" content="">
+    <meta name="author" content="">
+    <script scr="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="style2.css">
+  <script> 
+  window.jQuery || document.write('<script src="http://kiwenlau.com/js/jquery.min.js"><\/script>')
+  </script>
+  <link rel="icon" href="../../favicon.ico">
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://v3.bootcss.com/examples/grid/grid.css" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <link rel="stylesheet" type="text/css" href="dialog-polyfill.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+
+
+</head>
+<body>
+   <script src="myscript.js"></script>
+   <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Cancer Detection</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <!--button type="button" class="btn-primary" onclick="signIn();">
+          Sign-in with google</button>
+        <!--<a type="button" class="g-signin2" data-onsucess="onSignIn">Sign-in</a>-->
+       
+        <button id="logOutBtn" class="mdl-button mdl-js-button mdl-raised mdl-button-colored mdl-js-ripple-effect">
+        Sign Out
+      </button>
+        <a class="mdl-navigation__link" href="">Link3</a>
+        <a class="mdl-navigation__link" href="">Link4</a>
+      </nav>
+</div>
+
+
+
+
+  </header>
+   <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Menu</span>
+   <nav class="mdl-navigation">
+    <a  class="mdl-navigation__link" id="wel" href="index.html"> Welcome </a>
+      <a  class="mdl-navigation__link" id="news" href="https://www.google.com/search?q=cancer+detection+about+genes&source=lnms&sa=X&ved=0ahUKEwjivcrBkYXXAhUK2oMKHWLaA0kQ_AUICSgA&biw=1463&bih=718&dpr=1.75"> News </a>
+      <a  class="mdl-navigation__link" href="mailto:caoliyi@bu.edu?subject=Hello%20again" id="contact" > Contact Us</a>
+      <a  class="mdl-navigation__link" id="result" href="update.html"> Update</a>
+      <a class="mdl-navigation__link"  id="Update" href="result.html"> Result</a>
+      <a class="mdl-navigation__link"  id="Update" href="data.html"> Data Analysis</a>
+    </nav>
+  </div>
+
+
+
+
+
+<center>
+
+<dialog id="loginDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Sign In</h4>
+    <p>                                    </p>
+    <P id="message">If you want to go through this website, you have to sign in first.</P>
+    <p id="loginError"></p>
+    <div class="mdl-dialog__content">
+
+
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="loginEmail">
+      <label class="mdl-textfield__label" for="sample3">Email...</label>
+    </div>
+
+  
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="password" id="loginPassword">
+      <label class="mdl-textfield__label" for="sample3">Password...</label>
+    </div>
+
+
+    <div>
+    <input type="checkbox" id="checkbox" onclick="showPassword();">
+    Show Password
+    </div>
+
+
+
+
+    </div>
+    <div class="mdl-dialog__actions">
+      <button id="loginBtn" class="mdl-button mdl-js-button mdl-raised mdl-button-colored mdl-js-ripple-effect">
+        Sign In
+      </button>
+      
+    </div>
+  </dialog>
+ 
+</center>
+
+
+
+
+ <center>
+
+
+
+
+
+
+
+
+ <center>
+<div class="main">
+    <p><h1>Upload File</h1></p>
+    <p>&nbsp;</p>
+    <input type="file" class="upload" id="upload_file" size="50" name="icon" onchange="loadFile(this);" >
+    <hr>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+</div>
+</center>
+
+
+
+
+
+<script src="app2.js"></script>
+
+
+</body>
+</html> 
