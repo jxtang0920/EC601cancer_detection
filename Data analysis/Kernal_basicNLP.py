@@ -43,8 +43,6 @@ df_test = pd.merge(df_test_var, df_test_txt, how='left', on='ID')
 #df_train.describe(include='all')
 #df_test.describe(include='all')
 df_train['Class'].value_counts().plot(kind="bar", rot=0)
-
-# This cell reduces the training data for Kaggle limits. Remove this cell for real results.
 df_train, _ = train_test_split(df_train, test_size=0.7, random_state=8, stratify=df_train['Class'])
 
 def evaluate_features(X, y, clf=None):
