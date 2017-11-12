@@ -1,5 +1,9 @@
 import pandas as pd
 import numpy as np
+import gensim
+import scikitplot.plotters as skplt
+import nltk
+import os
 
 from sklearn.model_selection import cross_val_predict
 from sklearn.model_selection import StratifiedKFold
@@ -13,15 +17,7 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
-import gensim
-
-import scikitplot.plotters as skplt
-
-import nltk
-
 from xgboost import XGBClassifier
-
-import os
 
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
@@ -32,16 +28,17 @@ from keras.callbacks import ModelCheckpoint
 from keras.models import load_model
 from keras.optimizers import Adam
 
+'''read data and merge'''
 df_train_txt = pd.read_csv('training_text', sep='\|\|', header=None, skiprows=1, names=["ID","Text"])
 df_train_var = pd.read_csv('training_variants')
 df_test_txt = pd.read_csv('test_text', sep='\|\|', header=None, skiprows=1, names=["ID","Text"])
 df_test_var = pd.read_csv('test_variants')
-
 df_train = pd.merge(df_train_var, df_train_txt, how='left', on='ID')
 df_test = pd.merge(df_test_var, df_test_txt, how='left', on='ID')
 
 #df_train.describe(include='all')
 #df_test.describe(include='all')
+
 df_train['Class'].value_counts().plot(kind="bar", rot=0)
 df_train, _ = train_test_split(df_train, test_size=0.7, random_state=8, stratify=df_train['Class'])
 
@@ -68,11 +65,14 @@ def evaluate_features(X, y, clf=None):
     print('Log loss: {}'.format(log_loss(y, probas)))
     print('Accuracy: {}'.format(accuracy_score(y, preds)))
     skplt.plot_confusion_matrix(y, preds)
-#test
-"""    
+
+#test iris dataset
+"""
 from sklearn.datasets import load_iris
 evaluate_features(*load_iris(True))
 """
+
+#use nltk bagofwords models
 count_vectorizer = CountVectorizer(
     analyzer="word", tokenizer=nltk.word_tokenize,
     preprocessor=None, stop_words='english', max_features=None)    
@@ -80,17 +80,16 @@ count_vectorizer = CountVectorizer(
 bag_of_words = count_vectorizer.fit_transform(df_train['Text'])
 len(count_vectorizer.get_feature_names())
 
-"""TruncatedSVD"""
+#TruncatedSVD
 svd = TruncatedSVD(n_components=25, n_iter=25, random_state=12)
 truncated_bag_of_words = svd.fit_transform(bag_of_words)
 
-'''raw_testcases
-evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel())
+#bag_of_words_testcases
+"""evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel())
 evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel(), 
                   RandomForestClassifier(n_estimators=1000, max_depth=5, verbose=1))
 evaluate_features(truncated_bag_of_words, df_train['Class'].values.ravel(), 
-                  SVC(kernel='linear', probability=True))
-'''
+                  SVC(kernel='linear', probability=True))"""
 
 """tfidf"""
 count_vectorizer = TfidfVectorizer(
@@ -99,10 +98,7 @@ count_vectorizer = TfidfVectorizer(
 
 tfidf = count_vectorizer.fit_transform(df_train['Text'])
 
-"""TruncatedSVD"""
-svd = TruncatedSVD(n_components=25, n_iter=25, random_state=12)
 truncated_tfidf = svd.fit_transform(tfidf)
-
 """tfidf testcases
 evaluate_features(truncated_tfidf, df_train['Class'].values.ravel())
 evaluate_features(truncated_tfidf, df_train['Class'].values.ravel(), 
@@ -110,8 +106,7 @@ evaluate_features(truncated_tfidf, df_train['Class'].values.ravel(),
 evaluate_features(truncated_tfidf, df_train['Class'].values.ravel(), 
                   SVC(kernel='linear', probability=True))
 """
-
-"""get word2vec"""
+#word2vec:
 class MySentences(object):
     """MySentences is a generator to produce a list of tokenized sentences 
     
@@ -133,8 +128,7 @@ def get_word2vec(sentences, location):
     """Returns trained word2vec
     
     Args:
-        sentences: iterator for sentences
-        
+        sentences: iterator for sentences        
         location (str): Path to save/load word2vec
     """
     if os.path.exists(location):
@@ -148,7 +142,7 @@ def get_word2vec(sentences, location):
     model.save(location)
     return model
 
-"""training the word2vec model.word2vec training is unsupervised, can use both training and test datasets."""
+#training the word2vec model.word2vec training is unsupervised, can use both training and test datasets.
 w2vec = get_word2vec(
     MySentences(
         df_train['Text'].values, 
@@ -201,8 +195,8 @@ class MeanEmbeddingVectorizer(object):
 mean_embedding_vectorizer = MeanEmbeddingVectorizer(w2vec)
 mean_embedded = mean_embedding_vectorizer.fit_transform(df_train['Text'])
 
-'''word2vec_testcases
-evaluate_features(mean_embedded, df_train['Class'].values.ravel())
+#word2vec_testcases
+'''evaluate_features(mean_embedded, df_train['Class'].values.ravel())
 evaluate_features(mean_embedded, df_train['Class'].values.ravel(),
                   RandomForestClassifier(n_estimators=1000, max_depth=15, verbose=1))
 evaluate_features(mean_embedded, 
@@ -211,6 +205,6 @@ evaluate_features(mean_embedded,
                                 objective='multi:softprob',
                                 learning_rate=0.03333,
                                 )
-                 )
-'''
+                 )'''
+
 
