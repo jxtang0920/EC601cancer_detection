@@ -88,7 +88,6 @@ def top_mean_feats(Xtr, features, grp_ids=None, min_tfidf=0.1, top_n=10):
         D = Xtr[grp_ids].toarray()
     else:
         D = Xtr.toarray()
-
     D[D < min_tfidf] = 0
     tfidf_means = np.mean(D, axis=0)
     return top_tfidf_feats(tfidf_means, features, top_n)
