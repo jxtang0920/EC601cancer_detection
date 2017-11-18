@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Cancer Detection</title>
+	<style media="screen">
+	body{
+		display: flex;
+		min-height: 100vh;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	#uploader{
+		-webkit-appearance: none;
+		appearance: none;
+		width: 50%;
+		margin-bottom: 10px;
+	}
+	</style>
+	</head>
+	<body>
+		<progress value="0" max="100" id="uploader">0%</progress>
+		<input type="file" value="upload" id="fileButton" />
+		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+		<script>
+		var config = {
+    	apiKey: "AIzaSyACzBBUAFoVMZ0CAuN0vBvKQ35Qd-51FZw",
+    	authDomain: "cancerdetection-b4ed9.firebaseapp.com",
+    	databaseURL: "https://cancerdetection-b4ed9.firebaseio.com",
+    	projectId: "cancerdetection-b4ed9",
+    	storageBucket: "cancerdetection-b4ed9.appspot.com",
+    	messagingSenderId: "304763830743"
+  		};
+  		firebase.initializeApp(config);
+
+  		var uploader = document.getElementById('uploader');
+  		var fileButton = document.getElementById('fileButton');
+
+  		fileButton.addEventListener('change',function(e){
+  			var file = e.target.files[0];
+
+  			var storageRef = firebase.storage().ref('UserUploads/' + file.name);
+
+  			var task = storageRef.put(file);
+  			
+  			task.on('state_changed',
+  				function progress (snapshot){
+  					var percentage = (snapshot.bytestransferred/snapshot.totalBytes)*100;
+  					uploader.value = percentage;
+
+  				},
+  				function error(err){
+
+  				},
+
+  				function complete(){
+
+  				}
+  				);
+  		});
+		</script>
+	</body>
+</html>
+    
