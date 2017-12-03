@@ -87,10 +87,15 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, Y_train, Y_test = train_test_split(train_set,train_y,test_size=0.7, random_state=12)
-'''
+#RandomForestClassifier
 clf = RandomForestClassifier(n_estimators=1000, max_depth=18, verbose=1).fit(X_train, Y_train)
 clf.score(X_test, Y_test)
+
+#XGBClassifier model
 '''
 from xgboost import XGBClassifier
 clf = XGBClassifier(max_depth=5, learning_rate=0.033, n_estimators=1000).fit(X_train, Y_train)
-clf.score(X_test, Y_test)
+'''
+#save the classification model to local
+from sklearn.externals import joblib
+joblib.dump(clf, "train_model.m")
