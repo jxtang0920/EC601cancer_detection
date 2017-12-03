@@ -45,8 +45,9 @@ sentences = datacleaning.constructLabeledSentences(inputText)
 
 INPUT_DIMENSION=300
 inputText_arrays = np.zeros((input_size, INPUT_DIMENSION))
-text_model = Doc2Vec.load('Doc2vec_model.d2v')
-
+text_model = Doc2Vec(min_count=1, window=5, size=INPUT_DIMENSION, sample=1e-4, negative=5, workers=4, iter=5,seed=1)
+text_model.build_vocab(sentences)
+text_model.train(sentences, total_examples=text_model.corpus_count, epochs=text_model.iter)
 
 #text arrays initialize
 for i in range(input_size):
@@ -57,7 +58,7 @@ input_set=inputText_arrays
 #predict the model
 from sklearn.externals import joblib
 clf = joblib.load("train_model.m")
-result=clf.predict(input_set)
+result=clf.predict_proba(input_set)
 print(result)
 
 
