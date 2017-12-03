@@ -8,4 +8,7 @@ the DataOverview and Kernal_basicNLP are mostly downloaeded from kaggle, we made
 4. xgboost
 5. keras
 
+## Notice:
+The final model generating program will be Doc2vec2
+
 
