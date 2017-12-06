@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+   <title>My Cool Savings Calculator</title>
+   <style>
+   h1 {
+      padding-bottom: 0em;
+      margin-bottom: 0em;
+   }
+   table {
+      padding-top: 0em;
+      margin-top: 0em;
+   }
+   </style>
+</head>
+<body>
+<form >
+   <h1>Cancer classification</h1>
+   <table>
+   <tr>
+      <td><label>ID:</label>
+      {% if final > 0 %}
+      <td><input type='text' name='ID' value={{ID}}></input></td>
+      {% else %}
+      <td><input type='text' name='ID'></input></td>
+      {% endif %}
+   </tr>
+   <br>
+   <tr>
+      <td><label>Text:</label>
+      {% if final > 0 %}
+      <td><input type='text' name='des' value={{des}}></input></td>
+      {% else %}
+      <td><input type='text' name='des' ></input></td>
+      {% endif %}
+   </tr>
+   <br>
+   <tr>
+      <td></td>
+      <td><input type='submit'></input></td>
+   </tr>
+   </table>
+</form>
+{% if final > 0 %}
+<br>
+<h2>Class: {{result}},{{ID}},{{des}}</h2>
+{% endif %}
+
+</body>
