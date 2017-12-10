@@ -82,20 +82,39 @@ for i in range(train_size,train_size+test_size):
 train_set=text_train_arrays
 #print(text_train_arrays[0][:50])
 
-'''evaluate_feature'''
-from sklearn.ensemble import RandomForestClassifier
+'''train_test_split'''
 from sklearn.model_selection import train_test_split
-
 X_train, X_test, Y_train, Y_test = train_test_split(train_set,train_y,test_size=0.7, random_state=12)
-#RandomForestClassifier
-clf = RandomForestClassifier(n_estimators=1000, max_depth=18, verbose=1).fit(X_train, Y_train)
-clf.score(X_test, Y_test)
+'''evaluate features, plot confusion matrix'''
 
-#XGBClassifier model
-'''
+import scikitplot.plotters as skplt
 from xgboost import XGBClassifier
-clf = XGBClassifier(max_depth=5, learning_rate=0.033, n_estimators=1000).fit(X_train, Y_train)
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_predict
+from sklearn.metrics import log_loss, accuracy_score
+from sklearn.model_selection import StratifiedKFold
+
+def evaluate_features(X, y, clf=None):
+    if clf is None:
+        clf = LogisticRegression()
+    
+    probas = cross_val_predict(clf, X, y, cv=StratifiedKFold(random_state=8), 
+                              n_jobs=-1, method='predict_proba', verbose=2)
+    pred_indices = np.argmax(probas, axis=1)
+    classes = np.unique(y)
+    preds = classes[pred_indices]
+    print('Log loss: {}'.format(log_loss(y, probas)))
+    print('Accuracy: {}'.format(accuracy_score(y, preds)))
+    skplt.plot_confusion_matrix(y, preds)
+
+#evaluate_features(X_test,Y_test)
+#models
+#clf = XGBClassifier(max_depth=5, learning_rate=0.033, n_estimators=1000).fit(X_train, Y_train)
+#clf = RandomForestClassifier(n_estimators=1000, max_depth=18, verbose=1).fit(X_train, Y_train)
+#clf.score(X_test, Y_test)
+#choose the best model, save it to local
 '''
-#save the classification model to local
 from sklearn.externals import joblib
 joblib.dump(clf, "train_model.m")
+'''
