@@ -5,9 +5,10 @@ Created on Sun Nov 12 15:12:58 2017
 @author: jxtan
 """
 from __future__ import print_function
+#import os
 import re
 import string
-import pandas as pd
+#import pandas as pd
 import numpy as np
 
 from nltk.corpus import stopwords
@@ -15,17 +16,11 @@ from gensim.models.doc2vec import LabeledSentence
 from gensim import utils
 from gensim.models import Doc2Vec
 
-input_text = pd.read_csv("input_text", sep="\|\|", engine='python', header=None, skiprows=1, names=["ID","Text"])
-input_size = len(input_text)
+input_ID = "0"
+input_text = "ewrsfdg e#$5w sd2!fgxc s#$dfg wert sdfg"
+input_size = 1
 
 '''data cleaning'''
-
-def constructLabeledSentences(data):
-    sentences=[]
-    for index, row in data.iteritems():
-        sentences.append(LabeledSentence(utils.to_unicode(row).split(), ['Text' + '_%s' % str(index)]))
-    return sentences
-
 def textClean(text):
     text = re.sub(r"[^A-Za-z0-9^,!.\/'+-=]", " ", text)
     text = text.lower().split()
@@ -36,13 +31,17 @@ def textClean(text):
 
 def cleanup(text):
     text = textClean(text)
-    text= text.translate(str.maketrans("","", string.punctuation))
+    text = text.translate(str.maketrans("","", string.punctuation))
     return text
 
-inputText = input_text['Text'].apply(cleanup)
-sentences = constructLabeledSentences(inputText)
+inputText = cleanup(input_text)
 
+sentences = inputText.split()
+a = []
+for i in sentences:
+    a.append(LabeledSentence(utils.to_unicode(i).split(), ['Text' + '_%s' % str('0')]))
 
+sentences = a
 #Doc2vec model for new data
 INPUT_DIMENSION=300
 inputText_arrays = np.zeros((input_size, INPUT_DIMENSION))
@@ -60,11 +59,9 @@ input_set=inputText_arrays
 from sklearn.externals import joblib
 clf = joblib.load("train_model.m")
 result=clf.predict_proba(input_set)
- 
-mystring = ""
-for i in range(len(result)):
-    mystring += str(input_text['ID'][i]) +" | "
-    for digit in result[i]:
-        mystring += str(digit) + ' '
-    mystring += '\n'
+
+mystring = str(input_ID) + " | "
+for digit in result[0]:
+    mystring += str(digit) + ' '
 print(mystring)
+
