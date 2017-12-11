@@ -1,0 +1,43 @@
+{% extends "social/base.html" %}
+
+{% block content %}
+<div class='info'>
+
+   
+      <div class="col-md-8 col-md-offset-2">  
+          <form class="form-inline" role="form"  method="post" enctype="multipart/form-data" accept-charset="utf-8"> 
+          {% csrf_token %} 
+              <div class="form-group">  
+                  <input  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="file" name="file">  <br>
+              </div>  
+              <br>
+              <div class="form-group">  
+                  <input   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Upload">  
+              </div>  
+          </form>
+          <br>
+          <br>
+          <br>
+          <div style="position: center  padding-left:25em;">
+   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"> 
+  <thead>
+    <tr>
+      <th> &#12288; &#12288;Cancer type &#12288; &#12288;</th>
+      <th>1 &#12288; &#12288; 2&#12288; &#12288; 3&#12288; &#12288; 4&#12288; &#12288; 5&#12288; &#12288; 6&#12288; &#12288; 7&#12288; &#12288; 8&#12288; &#12288; 9&#12288; &#12288; </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> &#12288; &#12288;percentage &#12288; &#12288;</td>
+      <td>{{result}}</td>
+  </tbody>
+</table>
+</div>
+      </div>  
+
+  
+<br>
+<br>
+</div>
+{% endblock %}

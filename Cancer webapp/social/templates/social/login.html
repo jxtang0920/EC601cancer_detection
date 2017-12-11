@@ -1,0 +1,46 @@
+{% extends "social/base.html" %}
+
+{% block content %}
+<span class='info'>&#8658; You must be logged in to view this page.</span>
+<br>
+<br>
+<div class='info'>
+    {% if loggedin %}
+    <br>
+    <br>
+        You are now logged in.
+        <br>
+        <br>
+        Please <a href='/social/member/?view={{ username }}'>click here</a> to continue.
+        <br><br>
+    {% else %}
+        <h3>Please enter your details to login</h3>
+        <form method='POST' action='/social/login/'>
+        	{% csrf_token %}
+            <span class='fieldname'>Username</span>
+           
+             <form action="#">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text"  maxlength='16' id='user' name='username' onBlur='checkUser(this)'>
+    <label class="mdl-textfield__label" for="sample3">Username...</label>
+  </div>
+
+            <span id='info'></span>
+            <br>
+            <span class='fieldname'>Password</span>
+            
+<form action="#">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="password"  maxlength='16'  name='password'>
+    <label class="mdl-textfield__label" for="sample3">Password...</label>
+  </div><br>
+
+
+
+            <input class="mdl-button mdl-js-button mdl-button--accent"  type='submit' value='Login'>
+
+       
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
