@@ -1,6 +1,6 @@
 We use Django as the web app framework. The delpoyed website is: http://35.153.186.117:8000/social/
 
-The final work is in the folder Cancer.
+The final work is in the folder 601 Cancer.
 
 To run the app, you need to install the Django and the Django rest framework.
 
