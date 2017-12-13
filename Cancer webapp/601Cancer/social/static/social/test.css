@@ -1,0 +1,88 @@
+/* styles.css*/
+.demo-layout-transparent {
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8KH7lnQzQXgrZqCIREbGAwTcE4rgSPWki-P95Gzs1R6DuT2p2) center / cover;
+  p {text-indent: 5em;}
+    h4 {font-family:Georgia; color:red;}
+
+}
+.demo-layout-transparent {
+  background: url(https://www.planwallpaper.com/static/images/518079-background-hd.jpg) center / cover;
+  p {text-indent: 5em;}
+    h4 {font-family:Georgia; color:red;}
+
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color:white;
+}
+
+
+.intro{
+
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100vh;
+
+  
+  padding-top: 5em;
+  padding-left:5em;
+  padding-right:5em;
+    font-family:Arial;
+    color:pink;
+    text-align:center;
+    word-spacing: 20px;
+    font-weight:bold;
+    letter-spacing: 2px;
+    font-size:1cm;
+
+}
+
+.info{
+
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100vh;
+
+  
+  padding-top: 10em;
+  padding-left:5em;
+  padding-right:5em;
+    font-family:Arial;
+    color:pink;
+    text-align:center;
+    word-spacing: 5px;
+    
+    letter-spacing: 1px;
+    font-size:0.5cm;
+
+}
+.cd-slider-nav{
+
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100vh;
+
+  
+  padding-top: 10em;
+  padding-left:5em;
+  padding-right:5em;
+    font-family:Arial;
+    color:pink;
+    text-align:center;
+    word-spacing: 5px;
+    
+    letter-spacing: 1px;
+    font-size:0.5cm;
+}
+.body{
+  background: white url("imag/item-01") no-repeat right bottom;
+}
+}
