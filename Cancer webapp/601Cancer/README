@@ -1,11 +1,11 @@
 If you run
 
-$ python manage.py runserver 8080
+$ python manage.py runserver
 
-you can then access the "admin" page from
+you can then access the main page from
 
-http://localhost:8080/admin/
+http://localhost:8000/social/
 
-The admin username and password are both "admin".
+You can create your account and try upload files to see the result.
 
-In the admin page you can more easily populate your database.
+Please use the templetes input in media folder.
