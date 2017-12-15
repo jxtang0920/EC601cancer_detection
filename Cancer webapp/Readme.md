@@ -1,5 +1,7 @@
 We use Django as the web app framework. The delpoyed website is: http://35.153.186.117:8000/social/
 
+We are sorry to tell you this, but we are running out of the free usage of amazon EC2. So we have to shut down the website for now. If you want to see our website online. Please contact us so that we can deploy it online for you. Or you can download the project to try it offline. Thank you for understanding.
+
 The final work is in the folder 601 Cancer.
 
 To run the app, you need to install the Django and the Django rest framework.
